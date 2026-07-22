@@ -75,13 +75,50 @@
 
   <!-- Hero -->
   <section id="top" class="relative overflow-x-clip pt-8 pb-12 sm:pt-10 sm:pb-16 md:pt-16 md:pb-24">
+    <!-- Solar system background -->
+    <div class="solar-system pointer-events-none absolute inset-0 z-0 overflow-hidden" aria-hidden="true">
+      <div class="solar-stars"></div>
+      <div class="solar-stage">
+        <div class="sun"></div>
+
+        <div class="orbit orbit-1">
+          <span class="planet planet-mercury"></span>
+        </div>
+        <div class="orbit orbit-2">
+          <span class="planet planet-venus"></span>
+        </div>
+        <div class="orbit orbit-3">
+          <span class="planet planet-earth">
+            <span class="moon"></span>
+          </span>
+        </div>
+        <div class="orbit orbit-4">
+          <span class="planet planet-mars"></span>
+        </div>
+        <div class="orbit orbit-5">
+          <span class="planet planet-jupiter"></span>
+        </div>
+        <div class="orbit orbit-6">
+          <span class="planet planet-saturn">
+            <span class="saturn-ring"></span>
+          </span>
+        </div>
+        <div class="orbit orbit-7">
+          <span class="planet planet-uranus"></span>
+        </div>
+        <div class="orbit orbit-8">
+          <span class="planet planet-neptune"></span>
+        </div>
+      </div>
+    </div>
+
     <div
-      class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_80%_20%,rgba(98,169,43,0.12),transparent_50%)]"
+      class="pointer-events-none absolute inset-0 z-[1] bg-[radial-gradient(ellipse_at_20%_40%,rgba(11,13,16,0.35),transparent_55%),linear-gradient(180deg,rgba(11,13,16,0.2)_0%,rgba(11,13,16,0.55)_100%)]"
       aria-hidden="true"
     ></div>
 
     <div
-      class="relative mx-auto grid max-w-6xl min-w-0 items-center gap-8 px-4 sm:gap-10 sm:px-5 md:grid-cols-2 md:gap-10 md:px-8"
+      class="relative z-10 mx-auto grid max-w-6xl min-w-0 items-center gap-8 px-4 sm:gap-10 sm:px-5 md:grid-cols-2 md:gap-10 md:px-8"
     >
       <!-- Photo first on mobile so brand image shows early -->
       <div class="reveal reveal-delay-1 order-1 md:order-2">
