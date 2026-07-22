@@ -64,7 +64,7 @@ export class App implements AfterViewInit, OnDestroy {
         { label: 'ElectronJS', icon: 'fa-brands fa-node-js' },
         { label: 'Node.js', icon: 'fa-brands fa-node' },
         { label: 'ASP.NET Core', icon: 'fa-brands fa-microsoft' },
-        { label: '.NET Core', icon: 'fa-brands fa-microsoft' },
+        { label: 'Java Swing', icon: 'fa-brands fa-java' },
         { label: 'C#', icon: 'fa-solid fa-code' },
         { label: 'C++', icon: 'fa-solid fa-code' },
         { label: 'REST API', icon: 'fa-solid fa-network-wired' },
