@@ -2,10 +2,6 @@
   display: block;
 }
 
-.hero-image {
-  animation: soft-zoom 1.4s cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-
 .nav-link {
   transition: color 0.25s ease;
 }
@@ -16,42 +12,51 @@
 }
 
 .cta-primary {
-  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .cta-primary:hover,
 .cta-primary:focus-visible {
-  background-color: var(--color-accent);
-  color: var(--color-white);
+  background-color: var(--color-accent-soft);
   transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(98, 169, 43, 0.25);
 }
 
 .cta-ghost {
-  transition: color 0.25s ease, gap 0.25s ease;
+  transition: border-color 0.25s ease, color 0.25s ease;
 }
 
 .cta-ghost:hover,
 .cta-ghost:focus-visible {
-  color: var(--color-accent);
-  gap: 0.75rem;
-}
-
-.skill-row {
-  transition: color 0.25s ease, padding-left 0.25s ease;
-}
-
-.skill-row:hover {
-  color: var(--color-accent);
-  padding-left: 0.25rem;
-}
-
-.work-item {
-  transition: border-color 0.3s ease, transform 0.3s ease;
-}
-
-.work-item:hover,
-.work-item:focus-visible {
   border-color: var(--color-accent);
-  transform: translateY(-2px);
+  color: var(--color-accent);
 }
 
+.tech-track {
+  animation: marquee 28s linear infinite;
+  width: max-content;
+}
+
+.skill-card,
+.stat-card,
+.work-item,
+.form-field {
+  transition: border-color 0.3s ease, transform 0.3s ease, background-color 0.3s ease;
+}
+
+.skill-card:hover,
+.stat-card:hover,
+.work-item:hover {
+  border-color: color-mix(in srgb, var(--color-accent) 55%, var(--color-line));
+  transform: translateY(-3px);
+}
+
+.form-field:focus {
+  outline: none;
+  border-color: var(--color-accent);
+}
+
+.portrait-glow {
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--color-accent) 35%, transparent),
+    0 30px 80px rgba(0, 0, 0, 0.45);
+}
