@@ -14,8 +14,8 @@
   --color-line: #cfd6de;
   --color-white: #ffffff;
 
-  --font-display: 'Cormorant Garamond', Georgia, serif;
-  --font-body: 'Outfit', 'Segoe UI', sans-serif;
+  --font-display: 'Inter Tight', 'Segoe UI', sans-serif;
+  --font-body: 'Inter Tight', 'Segoe UI', sans-serif;
 }
 
 @layer base {
