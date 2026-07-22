@@ -100,12 +100,54 @@ export class App implements AfterViewInit, OnDestroy {
       ],
     },
     {
+      title: 'CI/CD Pipelines',
+      icon: 'fa-solid fa-rocket',
+      items: [
+        { label: 'Jenkins', icon: 'fa-solid fa-gears' },
+        { label: 'GitHub Actions', icon: 'fa-brands fa-github' },
+        { label: 'GitLab CI/CD', icon: 'fa-brands fa-gitlab' },
+        { label: 'Azure DevOps Pipelines', icon: 'fa-brands fa-microsoft' },
+        { label: 'TeamCity', icon: 'fa-solid fa-building' },
+        { label: 'Argo CD', icon: 'fa-solid fa-code-branch' },
+      ],
+    },
+    {
       title: 'Cloud & Storage',
       icon: 'fa-solid fa-cloud',
       items: [
         { label: 'DigitalOcean', icon: 'fa-brands fa-digital-ocean' },
         { label: 'DigitalOcean Spaces', icon: 'fa-solid fa-hard-drive' },
       ],
+    },
+  ];
+
+  readonly education = [
+    {
+      degree: 'MSc in Computer Science and Engineering',
+      icon: 'fa-solid fa-certificate',
+    },
+    {
+      degree: 'BSc in Computer Science and Engineering',
+      icon: 'fa-solid fa-certificate',
+    },
+    {
+      degree: 'HSC — Higher Secondary School Certificate',
+      icon: 'fa-solid fa-certificate',
+    },
+    {
+      degree: 'SSC — Secondary School Certificate',
+      icon: 'fa-solid fa-certificate',
+    },
+  ];
+
+  readonly memberships = [
+    {
+      title: 'Member, Bangladesh Computer Society (BCS)',
+      icon: 'fa-solid fa-id-card',
+    },
+    {
+      title: 'Member, IDEB, Bangladesh',
+      icon: 'fa-solid fa-id-card',
     },
   ];
 
