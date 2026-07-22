@@ -1,0 +1,17 @@
+# Partha — Programmer | partha.info.bd
+
+Personal website of **Partha**, a programmer from Bangladesh.
+
+## Specialties
+- Angular, TypeScript, JavaScript
+- ASP.NET Core, .NET Core, C#
+- ERP, Accounting, POS, HRM software
+- SQL Server, PostgreSQL, MySQL, Oracle
+- REST APIs, Docker, Jenkins, CI/CD
+
+## Contact
+- Website: https://partha.info.bd
+- Email: partho.netvs@gmail.com
+- Tel: +88 09617 171718
+- Office: +88 09638 032030
+- Facebook: https://www.facebook.com/partho.torofder/

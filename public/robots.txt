@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://partha.info.bd/sitemap.xml
+Host: https://partha.info.bd
