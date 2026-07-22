@@ -1,0 +1,236 @@
+<div class="min-h-screen">
+  <header class="absolute inset-x-0 top-0 z-30">
+    <div class="mx-auto flex max-w-6xl items-center justify-between px-5 py-5 md:px-8">
+      <a href="#top" class="text-sm font-medium tracking-[0.08em] text-ink">
+        partha.info.bd
+      </a>
+      <nav class="flex items-center gap-5 md:gap-8" aria-label="Primary">
+        <a href="#about" class="nav-link text-sm text-ink/70">About</a>
+        <a href="#craft" class="nav-link text-sm text-ink/70">Craft</a>
+        <a href="#work" class="nav-link hidden text-sm text-ink/70 sm:inline">Work</a>
+        <a href="#contact" class="nav-link text-sm text-ink/70">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero: full-bleed image place + brand -->
+  <section id="top" class="relative isolate min-h-screen overflow-hidden">
+    <div class="absolute inset-0 bg-stone" aria-hidden="true"></div>
+
+    <!-- Image place: drop file at public/images/portrait.jpg -->
+    <img
+      class="hero-image absolute inset-0 h-full w-full object-cover object-center transition-opacity duration-500"
+      [class.opacity-0]="!portraitReady"
+      [class.opacity-100]="portraitReady"
+      [src]="portraitSrc"
+      alt=""
+      width="1600"
+      height="2000"
+      fetchpriority="high"
+      (load)="onPortraitLoad()"
+      (error)="onPortraitError()"
+    />
+
+    @if (!portraitReady) {
+      <div
+        class="absolute inset-0 flex flex-col items-center justify-center gap-4 bg-[linear-gradient(165deg,#eef1f4_0%,#dde3e9_55%,#d2d9e0_100%)] px-6 text-center"
+        aria-label="Portrait image placeholder"
+      >
+        <i class="fa-solid fa-image text-4xl text-muted" aria-hidden="true"></i>
+        <p class="font-[family-name:var(--font-display)] text-3xl text-ink md:text-4xl">Your photo</p>
+        <p class="max-w-sm text-sm leading-relaxed text-muted">
+          Add <span class="font-medium text-ink">public/images/portrait.jpg</span> — this full-bleed area is for your portrait.
+        </p>
+      </div>
+    }
+
+    <div
+      class="absolute inset-0 bg-[linear-gradient(180deg,rgba(243,245,247,0.55)_0%,rgba(243,245,247,0.15)_35%,rgba(20,24,31,0.55)_100%)]"
+      aria-hidden="true"
+    ></div>
+
+    <div class="relative z-10 mx-auto flex min-h-screen max-w-6xl flex-col justify-end px-5 pb-16 pt-24 md:px-8 md:pb-24">
+      <p class="reveal text-xs font-medium tracking-[0.28em] text-white/85 uppercase md:text-ink/70 md:mix-blend-normal">
+        Programmer · Bangladesh
+      </p>
+
+      <h1
+        class="reveal reveal-delay-1 mt-3 font-[family-name:var(--font-display)] text-[clamp(4rem,13vw,8rem)] leading-[0.9] font-medium tracking-tight text-white drop-shadow-sm"
+      >
+        Partha
+      </h1>
+
+      <p class="reveal reveal-delay-2 mt-5 max-w-lg text-lg font-light leading-relaxed text-white/90 md:text-xl">
+        Building clear software with classic restraint and modern craft.
+      </p>
+
+      <div class="reveal reveal-delay-3 mt-9 flex flex-wrap items-center gap-4">
+        <a
+          href="#work"
+          class="cta-primary inline-flex items-center gap-2 bg-white px-6 py-3 text-sm font-medium tracking-wide text-ink"
+        >
+          <i class="fa-solid fa-folder-open" aria-hidden="true"></i>
+          View work
+        </a>
+        <a
+          href="#contact"
+          class="cta-ghost inline-flex items-center gap-2 text-sm font-medium text-white"
+        >
+          Contact
+          <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="mx-auto max-w-6xl px-5 py-20 md:px-8 md:py-28">
+    <div class="h-px w-full bg-line/80"></div>
+    <div class="mt-14 grid gap-10 md:grid-cols-[0.85fr_1.15fr] md:gap-16">
+      <div>
+        <p class="text-xs font-medium tracking-[0.24em] text-accent uppercase">About</p>
+        <h2 class="mt-3 font-[family-name:var(--font-display)] text-4xl font-medium text-ink md:text-5xl">
+          Modern mind, classic finish
+        </h2>
+      </div>
+      <div class="space-y-5 text-base leading-relaxed font-light text-ink-soft md:text-lg">
+        <p>
+          Hello — I’m <span class="font-normal text-ink">Partha</span>, a programmer who values clear
+          architecture, honest interfaces, and code that stays readable for years.
+        </p>
+        <p>
+          From small utilities to full products, I keep the craft simple: solve the real problem,
+          choose a clean stack, and ship something considered.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="craft" class="bg-stone/60">
+    <div class="mx-auto max-w-6xl px-5 py-20 md:px-8 md:py-28">
+      <div class="max-w-2xl">
+        <p class="text-xs font-medium tracking-[0.24em] text-accent uppercase">Craft</p>
+        <h2 class="mt-3 font-[family-name:var(--font-display)] text-4xl font-medium text-ink md:text-5xl">
+          What I work with
+        </h2>
+        <p class="mt-4 font-light text-ink-soft">
+          A practical set of skills for building software that lasts.
+        </p>
+      </div>
+
+      <ul class="mt-12 grid border-t border-line sm:grid-cols-2">
+        @for (skill of skills; track skill.label) {
+          <li class="skill-row flex items-center gap-4 border-b border-line px-1 py-5">
+            <span
+              class="flex h-10 w-10 shrink-0 items-center justify-center border border-line bg-white text-accent"
+              aria-hidden="true"
+            >
+              <i [class]="'fa-solid ' + skill.icon"></i>
+            </span>
+            <span class="text-base text-ink md:text-lg">{{ skill.label }}</span>
+          </li>
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section id="work" class="mx-auto max-w-6xl px-5 py-20 md:px-8 md:py-28">
+    <div class="max-w-2xl">
+      <p class="text-xs font-medium tracking-[0.24em] text-accent uppercase">Selected work</p>
+      <h2 class="mt-3 font-[family-name:var(--font-display)] text-4xl font-medium text-ink md:text-5xl">
+        Selected projects
+      </h2>
+      <p class="mt-4 font-light text-ink-soft">
+        Placeholder case studies — replace with your real work anytime.
+      </p>
+    </div>
+
+    <div class="mt-12 grid gap-5 md:grid-cols-3">
+      @for (work of works; track work.title) {
+        <a
+          href="#contact"
+          class="work-item group block border border-line bg-white/70 p-6 outline-none"
+        >
+          <div class="flex items-center justify-between gap-3">
+            <span class="text-xs font-medium tracking-[0.18em] text-accent uppercase">
+              {{ work.tag }}
+            </span>
+            <i
+              class="fa-solid fa-arrow-up-right-from-square text-sm text-muted transition group-hover:text-accent"
+              aria-hidden="true"
+            ></i>
+          </div>
+          <h3 class="mt-6 font-[family-name:var(--font-display)] text-2xl font-medium text-ink">
+            {{ work.title }}
+          </h3>
+          <p class="mt-3 text-sm leading-relaxed font-light text-ink-soft">
+            {{ work.note }}
+          </p>
+        </a>
+      }
+    </div>
+  </section>
+
+  <section id="contact" class="bg-ink text-white">
+    <div class="mx-auto max-w-6xl px-5 py-20 md:px-8 md:py-28">
+      <p class="text-xs font-medium tracking-[0.24em] text-accent-soft uppercase">Contact</p>
+      <h2 class="mt-3 max-w-3xl font-[family-name:var(--font-display)] text-4xl leading-tight font-medium md:text-6xl">
+        Let’s build something lasting.
+      </h2>
+      <p class="mt-5 max-w-xl text-base font-light text-white/70 md:text-lg">
+        Share the problem you’re solving — I’ll reply with clear next steps.
+      </p>
+
+      <div class="mt-10">
+        <a
+          href="mailto:hello@partha.info.bd"
+          class="inline-flex items-center gap-3 border border-white/25 px-6 py-3 text-sm font-medium tracking-wide transition hover:border-accent-soft hover:bg-accent"
+        >
+          <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+          hello&#64;partha.info.bd
+        </a>
+      </div>
+
+      <div class="mt-12 flex flex-wrap gap-6">
+        <a
+          href="https://github.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="link-line inline-flex items-center gap-2 text-sm text-white/75"
+        >
+          <i class="fa-brands fa-github" aria-hidden="true"></i>
+          GitHub
+        </a>
+        <a
+          href="https://www.linkedin.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="link-line inline-flex items-center gap-2 text-sm text-white/75"
+        >
+          <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>
+          LinkedIn
+        </a>
+        <a
+          href="https://x.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="link-line inline-flex items-center gap-2 text-sm text-white/75"
+        >
+          <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
+          X
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="border-t border-line bg-stone/40">
+    <div
+      class="mx-auto flex max-w-6xl flex-col gap-3 px-5 py-8 text-xs tracking-wide text-muted md:flex-row md:items-center md:justify-between md:px-8"
+    >
+      <p>© {{ year }} Partha · partha.info.bd</p>
+      <p class="flex items-center gap-2">
+        <i class="fa-solid fa-code text-accent" aria-hidden="true"></i>
+        Angular · Tailwind · Font Awesome
+      </p>
+    </div>
+  </footer>
+</div>
