@@ -62,6 +62,7 @@ export class App implements AfterViewInit, OnDestroy {
         { label: 'TypeScript (TS)', icon: 'fa-solid fa-code' },
         { label: 'Angular', icon: 'fa-brands fa-angular' },
         { label: 'ElectronJS', icon: 'fa-brands fa-node-js' },
+        { label: 'Node.js', icon: 'fa-brands fa-node' },
         { label: 'ASP.NET Core', icon: 'fa-brands fa-microsoft' },
         { label: '.NET Core', icon: 'fa-brands fa-microsoft' },
         { label: 'C#', icon: 'fa-solid fa-code' },
