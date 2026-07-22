@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
-export class App {
+export class App implements AfterViewInit, OnDestroy {
   readonly year = new Date().getFullYear();
 
   /** Portrait at public/images/portrait.jpg */
@@ -21,6 +21,15 @@ export class App {
   readonly phoneOffice = '+8809638032030';
   readonly phoneOfficeDisplay = '+88 09638 032030';
 
+  readonly skillsIntroText =
+    'Languages, frameworks, databases, and platforms I use to ship production software.';
+  typedSkillsIntro = '';
+  skillsTypingDone = false;
+
+  @ViewChild('skillsIntro') private skillsIntroRef?: ElementRef<HTMLElement>;
+
+  private typingTimer?: ReturnType<typeof setInterval>;
+  private skillsObserver?: IntersectionObserver;
   readonly techPills = [
     'Angular',
     'ASP.NET Core',
@@ -101,10 +110,30 @@ export class App {
   ];
 
   readonly stats = [
-    { value: '15+', label: 'Years Experience', icon: 'fa-solid fa-crown' },
-    { value: '80+', label: 'Projects Completed', icon: 'fa-solid fa-laptop-code' },
-    { value: '85+', label: 'Happy Clients', icon: 'fa-solid fa-award' },
-    { value: '20+', label: 'Technologies', icon: 'fa-solid fa-layer-group' },
+    {
+      value: '15+',
+      label: 'Years Experience',
+      icon: 'fa-solid fa-crown',
+      color: '#F25022', // Microsoft Red
+    },
+    {
+      value: '80+',
+      label: 'Projects Completed',
+      icon: 'fa-solid fa-laptop-code',
+      color: '#7FBA00', // Microsoft Green
+    },
+    {
+      value: '85+',
+      label: 'Happy Clients',
+      icon: 'fa-solid fa-award',
+      color: '#00A4EF', // Microsoft Blue
+    },
+    {
+      value: '20+',
+      label: 'Technologies',
+      icon: 'fa-solid fa-layer-group',
+      color: '#FFB900', // Microsoft Yellow
+    },
   ];
 
   readonly works = [
@@ -135,6 +164,55 @@ export class App {
   blockImageAction(event: Event): void {
     event.preventDefault();
     event.stopPropagation();
+  }
+
+  ngAfterViewInit(): void {
+    const el = this.skillsIntroRef?.nativeElement;
+    if (!el || typeof IntersectionObserver === 'undefined') {
+      this.startSkillsTyping();
+      return;
+    }
+
+    this.skillsObserver = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          this.startSkillsTyping();
+          this.skillsObserver?.disconnect();
+        }
+      },
+      { threshold: 0.4 },
+    );
+    this.skillsObserver.observe(el);
+  }
+
+  ngOnDestroy(): void {
+    if (this.typingTimer) {
+      clearInterval(this.typingTimer);
+    }
+    this.skillsObserver?.disconnect();
+  }
+
+  private startSkillsTyping(): void {
+    if (this.typingTimer || this.typedSkillsIntro.length > 0) {
+      return;
+    }
+
+    if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      this.typedSkillsIntro = this.skillsIntroText;
+      this.skillsTypingDone = true;
+      return;
+    }
+
+    let index = 0;
+    this.typingTimer = setInterval(() => {
+      index += 1;
+      this.typedSkillsIntro = this.skillsIntroText.slice(0, index);
+      if (index >= this.skillsIntroText.length) {
+        clearInterval(this.typingTimer);
+        this.typingTimer = undefined;
+        this.skillsTypingDone = true;
+      }
+    }, 32);
   }
 
   toggleMenu(): void {
