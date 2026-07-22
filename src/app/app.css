@@ -47,12 +47,6 @@
   animation-duration: 1.1s;
 }
 
-@keyframes globe-spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 .cta-primary {
   transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -579,8 +573,7 @@
   .orbit,
   .moon,
   .sun,
-  .solar-stars,
-  .nav-globe {
+  .solar-stars {
     animation: none !important;
   }
 }
