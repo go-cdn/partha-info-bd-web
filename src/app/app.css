@@ -32,7 +32,7 @@
 
 .cta-ghost:hover,
 .cta-ghost:focus-visible {
-  color: color-mix(in srgb, white 85%, var(--color-accent-soft));
+  color: var(--color-accent);
   gap: 0.75rem;
 }
 
