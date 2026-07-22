@@ -61,6 +61,7 @@ export class App implements AfterViewInit, OnDestroy {
         { label: 'JavaScript (JS)', icon: 'fa-brands fa-js' },
         { label: 'TypeScript (TS)', icon: 'fa-solid fa-code' },
         { label: 'Angular', icon: 'fa-brands fa-angular' },
+        { label: 'ElectronJS', icon: 'fa-brands fa-node-js' },
         { label: 'ASP.NET Core', icon: 'fa-brands fa-microsoft' },
         { label: '.NET Core', icon: 'fa-brands fa-microsoft' },
         { label: 'C#', icon: 'fa-solid fa-code' },
@@ -74,6 +75,7 @@ export class App implements AfterViewInit, OnDestroy {
       items: [
         { label: 'Visual Studio', icon: 'fa-solid fa-window-maximize' },
         { label: 'VS Code', icon: 'fa-solid fa-laptop-code' },
+        { label: 'Apache NetBeans', icon: 'fa-solid fa-code' },
         { label: 'Git', icon: 'fa-brands fa-git-alt' },
         { label: 'GitHub', icon: 'fa-brands fa-github' },
         { label: 'Postman', icon: 'fa-solid fa-flask' },
@@ -97,6 +99,7 @@ export class App implements AfterViewInit, OnDestroy {
       items: [
         { label: 'Docker', icon: 'fa-brands fa-docker' },
         { label: 'Nginx', icon: 'fa-solid fa-server' },
+        { label: 'Traefik', icon: 'fa-solid fa-route' },
         { label: 'RabbitMQ', icon: 'fa-solid fa-envelope-open-text' },
         { label: 'Jenkins', icon: 'fa-solid fa-gears' },
         { label: 'Windows Server', icon: 'fa-brands fa-windows' },
@@ -123,6 +126,7 @@ export class App implements AfterViewInit, OnDestroy {
       items: [
         { label: 'DigitalOcean', icon: 'fa-brands fa-digital-ocean' },
         { label: 'DigitalOcean Spaces', icon: 'fa-solid fa-hard-drive' },
+        { label: 'Amazon S3', icon: 'fa-brands fa-aws' },
       ],
     },
   ];
