@@ -21,6 +21,10 @@ export class App implements AfterViewInit, OnDestroy {
   readonly phoneOffice = '+8809638032030';
   readonly phoneOfficeDisplay = '+88 09638 032030';
 
+  readonly brandText = 'Partha.info.bd';
+  typedBrand = '';
+  brandTypingDone = false;
+
   readonly skillsIntroText =
     'Languages, frameworks, databases, and platforms I use to ship production software.';
   typedSkillsIntro = '';
@@ -29,6 +33,8 @@ export class App implements AfterViewInit, OnDestroy {
   @ViewChild('skillsIntro') private skillsIntroRef?: ElementRef<HTMLElement>;
 
   private typingTimer?: ReturnType<typeof setInterval>;
+  private brandTypingTimer?: ReturnType<typeof setInterval>;
+  private brandPauseTimer?: ReturnType<typeof setTimeout>;
   private skillsObserver?: IntersectionObserver;
   readonly techPills = [
     'Angular',
@@ -180,19 +186,88 @@ export class App implements AfterViewInit, OnDestroy {
 
   readonly works = [
     {
-      title: 'Enterprise web platforms',
-      note: 'Reliable Angular & .NET systems for day-to-day operations.',
-      tag: 'Full-stack',
+      title: '6 ERP Software on Agro based Industry',
+      tag: 'ERP',
+      icon: 'fa-solid fa-seedling',
+      tech: ['C#', '.NET Core', 'SQL Server', 'Angular'],
     },
     {
-      title: 'API & database solutions',
-      note: 'SQL Server, Oracle, PostgreSQL and MySQL-backed services.',
-      tag: 'Backend',
+      title: '2 ERP Software on Leather Industry',
+      tag: 'ERP',
+      icon: 'fa-solid fa-industry',
+      tech: ['ASP.NET Core', 'C#', 'Oracle', 'REST API'],
     },
     {
-      title: 'DevOps & delivery',
-      note: 'Docker, Jenkins and server setups that keep releases smooth.',
-      tag: 'DevOps',
+      title: '6 Education Multimedia Applications',
+      tag: 'Education',
+      icon: 'fa-solid fa-chalkboard-user',
+      tech: ['C#', 'JavaScript', 'MySQL', 'HTML/CSS'],
+    },
+    {
+      title: '13 Accounting Software',
+      tag: 'Finance',
+      icon: 'fa-solid fa-calculator',
+      tech: ['.NET Core', 'SQL Server', 'C#', 'Crystal Reports'],
+    },
+    {
+      title: '4 Retail POS Software',
+      tag: 'Retail',
+      icon: 'fa-solid fa-cash-register',
+      tech: ['C#', 'SQL Server', 'WinForms', 'Barcode'],
+    },
+    {
+      title: '3 PLC Software',
+      tag: 'Industrial',
+      icon: 'fa-solid fa-microchip',
+      tech: ['C++', 'C#', 'Serial/TCP', 'Windows'],
+    },
+    {
+      title: '1 School ERP Software',
+      tag: 'ERP',
+      icon: 'fa-solid fa-school',
+      tech: ['Angular', 'ASP.NET Core', 'PostgreSQL', 'REST API'],
+    },
+    {
+      title: '3 HRM Software',
+      tag: 'HR',
+      icon: 'fa-solid fa-users',
+      tech: ['.NET Core', 'SQL Server', 'Angular', 'JWT'],
+    },
+    {
+      title: 'Paperless Document Management Application',
+      tag: 'DMS',
+      icon: 'fa-solid fa-file-lines',
+      tech: ['ASP.NET Core', 'SQL Server', 'Redis', 'Docker'],
+    },
+    {
+      title: '10+ Web Pages using CMS (WP, Joomla, Drupal, MediaWiki)',
+      tag: 'CMS',
+      icon: 'fa-brands fa-wordpress',
+      tech: ['WordPress', 'Joomla', 'Drupal', 'MediaWiki', 'PHP/MySQL'],
+    },
+    {
+      title: 'Maintaining a large-scale web application',
+      tag: 'Web',
+      icon: 'fa-solid fa-globe',
+      tech: ['Angular', '.NET Core', 'Nginx', 'Jenkins'],
+    },
+    {
+      title: 'Architecture Design',
+      tag: 'Architecture',
+      icon: 'fa-solid fa-sitemap',
+      tech: ['Microservices', 'REST', 'Docker', 'SQL/NoSQL'],
+    },
+    {
+      title: 'RESTful API Development and Integration',
+      tag: 'API',
+      icon: 'fa-solid fa-network-wired',
+      tech: ['ASP.NET Core', 'C#', 'Swagger', 'Postman'],
+    },
+    {
+      title: 'Performance & Security Upgradation',
+      tag: 'Security',
+      icon: 'fa-solid fa-shield-halved',
+      tech: ['OWASP', 'Redis Cache', 'SQL Tuning', 'Cloudflare'],
     },
   ];
 
@@ -209,6 +284,8 @@ export class App implements AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit(): void {
+    this.startBrandTyping();
+
     const el = this.skillsIntroRef?.nativeElement;
     if (!el || typeof IntersectionObserver === 'undefined') {
       this.startSkillsTyping();
@@ -231,7 +308,52 @@ export class App implements AfterViewInit, OnDestroy {
     if (this.typingTimer) {
       clearInterval(this.typingTimer);
     }
+    if (this.brandTypingTimer) {
+      clearInterval(this.brandTypingTimer);
+    }
+    if (this.brandPauseTimer) {
+      clearTimeout(this.brandPauseTimer);
+    }
     this.skillsObserver?.disconnect();
+  }
+
+  private startBrandTyping(): void {
+    if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      this.typedBrand = this.brandText;
+      this.brandTypingDone = true;
+      return;
+    }
+
+    const typeForward = () => {
+      let index = 0;
+      this.typedBrand = '';
+      this.brandTypingDone = false;
+      this.brandTypingTimer = setInterval(() => {
+        index += 1;
+        this.typedBrand = this.brandText.slice(0, index);
+        if (index >= this.brandText.length) {
+          clearInterval(this.brandTypingTimer);
+          this.brandTypingTimer = undefined;
+          this.brandTypingDone = true;
+          this.brandPauseTimer = setTimeout(() => eraseText(), 1800);
+        }
+      }, 90);
+    };
+
+    const eraseText = () => {
+      this.brandTypingDone = false;
+      this.brandTypingTimer = setInterval(() => {
+        if (this.typedBrand.length === 0) {
+          clearInterval(this.brandTypingTimer);
+          this.brandTypingTimer = undefined;
+          this.brandPauseTimer = setTimeout(() => typeForward(), 400);
+          return;
+        }
+        this.typedBrand = this.typedBrand.slice(0, -1);
+      }, 45);
+    };
+
+    typeForward();
   }
 
   private startSkillsTyping(): void {
