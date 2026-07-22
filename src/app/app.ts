@@ -10,9 +10,8 @@ import { FormsModule } from '@angular/forms';
 export class App {
   readonly year = new Date().getFullYear();
 
-  /** Put your photo at public/images/portrait.jpg */
+  /** Portrait at public/images/portrait.jpg */
   readonly portraitSrc = 'images/portrait.jpg';
-  portraitReady = false;
   menuOpen = false;
 
   readonly email = 'partho.netvs@gmail.com';
@@ -133,12 +132,9 @@ export class App {
     message: '',
   };
 
-  onPortraitLoad(): void {
-    this.portraitReady = true;
-  }
-
-  onPortraitError(): void {
-    this.portraitReady = false;
+  blockImageAction(event: Event): void {
+    event.preventDefault();
+    event.stopPropagation();
   }
 
   toggleMenu(): void {

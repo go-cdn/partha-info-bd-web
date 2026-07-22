@@ -1,5 +1,7 @@
 :host {
   display: block;
+  overflow-x: clip;
+  width: 100%;
 }
 
 .nav-link {
@@ -51,6 +53,10 @@
   transform: translateY(-3px);
 }
 
+.form-field {
+  font-size: 16px; /* prevents iOS zoom on focus */
+}
+
 .form-field:focus {
   outline: none;
   border-color: var(--color-accent);
@@ -59,4 +65,37 @@
 .portrait-glow {
   box-shadow: 0 0 0 1px color-mix(in srgb, var(--color-accent) 35%, transparent),
     0 30px 80px rgba(0, 0, 0, 0.45);
+}
+
+.portrait-protect,
+.portrait-photo,
+.portrait-shield {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  user-drag: none;
+}
+
+.portrait-shield {
+  cursor: default;
+  background: transparent;
+}
+
+@media (max-width: 639px) {
+  .tech-track {
+    animation: none;
+    width: 100%;
+    flex-wrap: wrap;
+  }
+}
+
+@media (hover: none) {
+  .skill-card:hover,
+  .stat-card:hover,
+  .work-item:hover,
+  .cta-primary:hover,
+  .cta-primary:focus-visible {
+    transform: none;
+    box-shadow: none;
+  }
 }
