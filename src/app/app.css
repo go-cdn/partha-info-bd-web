@@ -17,17 +17,6 @@
   color: var(--color-ink);
 }
 
-.nav-globe {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 1.35rem;
-  height: 1.35rem;
-  color: var(--color-accent);
-  filter: drop-shadow(0 0 8px rgba(98, 169, 43, 0.45));
-  animation: globe-spin 8s linear infinite;
-}
-
 .brand-type {
   position: relative;
   display: inline-block;
