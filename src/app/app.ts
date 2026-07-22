@@ -13,13 +13,27 @@ export class App {
   readonly portraitSrc = 'images/portrait.jpg';
   portraitReady = false;
 
-  readonly skills = [
-    { icon: 'fa-code', label: 'Full-stack development' },
-    { icon: 'fa-server', label: 'APIs & backends' },
-    { icon: 'fa-laptop-code', label: 'Clean frontend craft' },
-    { icon: 'fa-database', label: 'Data & systems design' },
-    { icon: 'fa-mobile-screen', label: 'Responsive interfaces' },
-    { icon: 'fa-gears', label: 'Automation & tooling' },
+  readonly experiences = [
+    { label: 'HTML', icon: 'fa-brands fa-html5' },
+    { label: 'CSS', icon: 'fa-brands fa-css3-alt' },
+    { label: 'TypeScript (TS)', icon: 'fa-solid fa-code' },
+    { label: 'JavaScript (JS)', icon: 'fa-brands fa-js' },
+    { label: 'VS Code', icon: 'fa-solid fa-laptop-code' },
+    { label: 'Angular', icon: 'fa-brands fa-angular' },
+    { label: 'C#', icon: 'fa-solid fa-code' },
+    { label: '.NET Core', icon: 'fa-brands fa-microsoft' },
+    { label: 'Visual Studio', icon: 'fa-solid fa-window-maximize' },
+    { label: 'Microsoft SQL Server', icon: 'fa-solid fa-database' },
+    { label: 'Oracle Database', icon: 'fa-solid fa-server' },
+    { label: 'PostgreSQL', icon: 'fa-solid fa-database' },
+    { label: 'MySQL', icon: 'fa-solid fa-database' },
+    { label: 'SQL', icon: 'fa-solid fa-table' },
+    { label: 'Jenkins', icon: 'fa-solid fa-gears' },
+    { label: 'C++', icon: 'fa-solid fa-code' },
+    { label: 'Windows Server', icon: 'fa-brands fa-windows' },
+    { label: 'AlmaLinux', icon: 'fa-brands fa-linux' },
+    { label: 'Docker', icon: 'fa-brands fa-docker' },
+    { label: 'RabbitMQ', icon: 'fa-solid fa-envelope-open-text' },
   ];
 
   readonly works = [
