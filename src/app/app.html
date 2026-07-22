@@ -3,34 +3,36 @@
   <header
     class="sticky top-0 z-40 border-b border-line/70 bg-bg/90 backdrop-blur-md pt-[env(safe-area-inset-top)]"
   >
-    <div class="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3 sm:px-5 sm:py-4 md:px-8">
-      <a href="#top" class="min-w-0 truncate text-sm font-semibold tracking-wide" (click)="closeMenu()">
-        Partha<span class="text-accent">.info.bd</span>
-      </a>
-
-      <nav class="hidden items-center gap-6 lg:gap-7 md:flex" aria-label="Primary">
-        <a href="#top" class="nav-link text-sm text-ink-soft">Home</a>
-        <a href="#experience" class="nav-link text-sm text-ink-soft">Experience</a>
-        <a href="#work" class="nav-link text-sm text-ink-soft">Projects</a>
-        <a href="#contact" class="nav-link text-sm text-ink-soft">Contact</a>
-      </nav>
-
-      <div class="flex shrink-0 items-center gap-2 sm:gap-3">
-        <a
-          href="#contact"
-          class="cta-primary hidden rounded-full bg-accent px-4 py-2 text-sm font-medium text-bg sm:inline-flex"
-        >
-          Get in touch
+    <div class="relative mx-auto max-w-6xl px-4 py-3 sm:px-5 sm:py-4 md:px-8">
+      <div class="relative z-10 flex items-center justify-between gap-3">
+        <a href="#top" class="min-w-0 truncate text-sm font-semibold tracking-wide" (click)="closeMenu()">
+          Partha<span class="text-accent">.info.bd</span>
         </a>
-        <button
-          type="button"
-          class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-line text-ink md:hidden"
-          (click)="toggleMenu()"
-          [attr.aria-expanded]="menuOpen"
-          aria-label="Toggle menu"
-        >
-          <i class="fa-solid" [class.fa-bars]="!menuOpen" [class.fa-xmark]="menuOpen"></i>
-        </button>
+
+        <nav class="hidden items-center gap-6 lg:gap-7 md:flex" aria-label="Primary">
+          <a href="#top" class="nav-link text-sm text-ink-soft">Home</a>
+          <a href="#experience" class="nav-link text-sm text-ink-soft">Experience</a>
+          <a href="#work" class="nav-link text-sm text-ink-soft">Projects</a>
+          <a href="#contact" class="nav-link text-sm text-ink-soft">Contact</a>
+        </nav>
+
+        <div class="flex shrink-0 items-center gap-2 sm:gap-3">
+          <a
+            href="#contact"
+            class="cta-primary hidden rounded-full bg-accent px-4 py-2 text-sm font-medium text-bg sm:inline-flex"
+          >
+            Get in touch
+          </a>
+          <button
+            type="button"
+            class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-line text-ink md:hidden"
+            (click)="toggleMenu()"
+            [attr.aria-expanded]="menuOpen"
+            aria-label="Toggle menu"
+          >
+            <i class="fa-solid" [class.fa-bars]="!menuOpen" [class.fa-xmark]="menuOpen"></i>
+          </button>
+        </div>
       </div>
     </div>
 
@@ -150,9 +152,9 @@
           class="reveal reveal-delay-1 mt-3 text-[clamp(1.75rem,7vw,3.6rem)] leading-[1.15] font-semibold tracking-tight break-words"
         >
           Creative
-          <span class="text-accent-grad">{{ '{' }}Angular{{ '}' }}</span>
+          <span class="text-shine text-shine-ltr text-accent-grad">{{ '{' }}Angular{{ '}' }}</span>
           &amp; .NET
-          <span class="text-accent-grad">Programmer</span><span class="flicker text-accent">_</span>
+          <span class="text-shine text-shine-rtl text-accent-grad">Programmer</span><span class="flicker text-accent">_</span>
         </h1>
 
         <p
