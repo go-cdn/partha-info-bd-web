@@ -14,7 +14,7 @@ export class App implements AfterViewInit, OnDestroy {
   readonly portraitSrc = 'images/portrait.jpg';
   menuOpen = false;
 
-  readonly email = 'partho.netvs@gmail.com';
+  readonly email = 'info@apollosoft.com.bd';
   readonly facebookUrl = 'https://www.facebook.com/partho.torofder/';
   readonly phoneTel = '+8809617171718';
   readonly phoneTelDisplay = '+88 09617 171718';
@@ -276,12 +276,34 @@ export class App implements AfterViewInit, OnDestroy {
     },
   ];
 
+  contactSubjects = [
+    'Project Inquiry',
+    'Freelance / Contract Work',
+    'Web Application Development',
+    'ERP / Accounting Software',
+    'POS / Inventory System',
+    'API Development & Integration',
+    'Database Design & Optimization',
+    'Performance & Security',
+    'Technical Consultation',
+    'Collaboration Opportunity',
+    'Job / Career Opportunity',
+    'Training / Mentorship',
+    'General Inquiry',
+    'Other',
+  ];
+
   contact = {
     name: '',
     email: '',
     subject: '',
     message: '',
+    captchaAnswer: '',
   };
+
+  captchaImageUrl = '';
+  private captchaExpected = '';
+  formError = '';
 
   blockImageAction(event: Event): void {
     event.preventDefault();
@@ -289,6 +311,7 @@ export class App implements AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit(): void {
+    this.refreshCaptcha();
     this.startBrandTyping();
 
     const el = this.skillsIntroRef?.nativeElement;
@@ -392,12 +415,229 @@ export class App implements AfterViewInit, OnDestroy {
     this.menuOpen = false;
   }
 
+  refreshCaptcha(): void {
+    const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+    let code = '';
+    for (let i = 0; i < 5; i += 1) {
+      code += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    this.captchaExpected = code;
+    this.captchaImageUrl = this.drawCaptchaImage(code);
+    this.contact.captchaAnswer = '';
+    this.formError = '';
+  }
+
+  private drawCaptchaImage(code: string): string {
+    if (typeof document === 'undefined') {
+      return '';
+    }
+
+    const width = 180;
+    const height = 56;
+    const canvas = document.createElement('canvas');
+    canvas.width = width;
+    canvas.height = height;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) {
+      return '';
+    }
+
+    // Background
+    const gradient = ctx.createLinearGradient(0, 0, width, height);
+    gradient.addColorStop(0, '#1a2018');
+    gradient.addColorStop(1, '#0b0d10');
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, width, height);
+
+    // Noise dots
+    for (let i = 0; i < 200; i += 1) {
+      ctx.fillStyle = `rgba(${70 + Math.random() * 140}, ${100 + Math.random() * 110}, ${40 + Math.random() * 60}, ${0.22 + Math.random() * 0.42})`;
+      ctx.fillRect(Math.random() * width, Math.random() * height, Math.random() * 2.8 + 0.4, Math.random() * 2.8 + 0.4);
+    }
+
+    // Soft decoy glyphs
+    const decoys = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+    for (let i = 0; i < 16; i += 1) {
+      ctx.save();
+      ctx.globalAlpha = 0.14 + Math.random() * 0.16;
+      ctx.translate(Math.random() * width, 12 + Math.random() * 32);
+      ctx.rotate((Math.random() - 0.5) * 1.25);
+      ctx.font = `${13 + Math.floor(Math.random() * 14)}px Arial`;
+      ctx.fillStyle = Math.random() > 0.5 ? '#4a6a32' : '#6b8f4a';
+      ctx.fillText(decoys.charAt(Math.floor(Math.random() * decoys.length)), 0, 0);
+      ctx.restore();
+    }
+
+    // Interference waves (behind text)
+    for (let i = 0; i < 10; i += 1) {
+      ctx.strokeStyle = `rgba(98, 169, 43, ${0.2 + Math.random() * 0.32})`;
+      ctx.lineWidth = 1 + Math.random() * 2;
+      ctx.beginPath();
+      const yBase = 8 + Math.random() * 40;
+      ctx.moveTo(0, yBase);
+      for (let x = 0; x <= width; x += 10) {
+        ctx.lineTo(x, yBase + Math.sin(x * 0.09 + i * 1.3) * (7 + Math.random() * 8));
+      }
+      ctx.stroke();
+    }
+
+    // Characters — one random letter is more obscured
+    const fonts = ['Arial', 'Courier New', 'Verdana', 'Tahoma', 'Georgia'];
+    const blurIndex = Math.floor(Math.random() * code.length);
+    for (let i = 0; i < code.length; i += 1) {
+      const ch = code[i];
+      const heavy = i === blurIndex;
+      const x = 14 + i * 32 + (Math.random() * (heavy ? 10 : 8) - (heavy ? 5 : 4));
+      const y = 36 + (Math.random() * (heavy ? 18 : 14) - (heavy ? 9 : 7));
+      const angle = (Math.random() - 0.5) * (heavy ? 1.35 : 0.9);
+      ctx.save();
+      ctx.translate(x, y);
+      if (heavy) {
+        ctx.transform(1, (Math.random() - 0.5) * 0.4, (Math.random() - 0.5) * 0.35, 1, 0, 0);
+      }
+      ctx.rotate(angle);
+      ctx.font = `700 ${21 + Math.floor(Math.random() * 7)}px ${fonts[i % fonts.length]}`;
+
+      // Ghost smear (heavier on one char)
+      const ghosts = heavy ? 7 : 3;
+      for (let g = 0; g < ghosts; g += 1) {
+        ctx.globalAlpha = heavy ? 0.12 + Math.random() * 0.18 : 0.2 + Math.random() * 0.15;
+        ctx.fillStyle = '#5a7a3a';
+        const spread = heavy ? 6 : 3.5;
+        ctx.fillText(ch, Math.random() * spread - spread / 2, Math.random() * spread - spread / 2);
+      }
+
+      ctx.globalAlpha = heavy ? 0.48 + Math.random() * 0.2 : 0.82;
+      ctx.fillStyle = heavy
+        ? i % 2 === 0
+          ? '#5f8a38'
+          : '#8aa86a'
+        : i % 2 === 0
+          ? '#84c04a'
+          : '#c5d9a8';
+      ctx.shadowColor = 'rgba(20, 30, 10, 0.7)';
+      ctx.shadowBlur = heavy ? 5 : 2;
+      ctx.fillText(ch, 0, 0);
+
+      // Cross strike(s)
+      ctx.shadowBlur = 0;
+      const strikes = heavy ? 3 : 1;
+      for (let s = 0; s < strikes; s += 1) {
+        ctx.globalAlpha = heavy ? 0.55 + Math.random() * 0.3 : 0.5;
+        ctx.strokeStyle = `rgba(${55 + Math.random() * 70}, ${85 + Math.random() * 70}, ${30 + Math.random() * 40}, 0.85)`;
+        ctx.lineWidth = heavy ? 1.2 + Math.random() : 1 + Math.random() * 0.6;
+        ctx.beginPath();
+        ctx.moveTo(-4, Math.random() * (heavy ? 14 : 10) - (heavy ? 7 : 5));
+        ctx.lineTo(18, Math.random() * (heavy ? 14 : 10) - (heavy ? 7 : 5));
+        ctx.stroke();
+      }
+
+      // Extra local noise over the heavy char
+      if (heavy) {
+        for (let n = 0; n < 28; n += 1) {
+          ctx.globalAlpha = 0.25 + Math.random() * 0.35;
+          ctx.fillStyle = `rgba(${40 + Math.random() * 80}, ${60 + Math.random() * 80}, ${20 + Math.random() * 40}, 0.7)`;
+          ctx.fillRect(Math.random() * 20 - 4, Math.random() * 22 - 12, Math.random() * 2.5 + 0.5, Math.random() * 2.5 + 0.5);
+        }
+        for (let n = 0; n < 3; n += 1) {
+          ctx.globalAlpha = 0.4;
+          ctx.strokeStyle = `rgba(90, 140, 50, ${0.35 + Math.random() * 0.4})`;
+          ctx.lineWidth = 1 + Math.random();
+          ctx.beginPath();
+          ctx.moveTo(-6, Math.random() * 16 - 8);
+          ctx.quadraticCurveTo(6, Math.random() * 20 - 10, 20, Math.random() * 16 - 8);
+          ctx.stroke();
+        }
+      }
+      ctx.restore();
+    }
+
+    // Overlay curves
+    for (let i = 0; i < 9; i += 1) {
+      ctx.strokeStyle = `rgba(${40 + Math.random() * 100}, ${65 + Math.random() * 95}, ${25 + Math.random() * 50}, ${0.25 + Math.random() * 0.35})`;
+      ctx.lineWidth = 1 + Math.random() * 1.6;
+      ctx.beginPath();
+      ctx.moveTo(Math.random() * width, Math.random() * height);
+      ctx.bezierCurveTo(
+        Math.random() * width,
+        Math.random() * height,
+        Math.random() * width,
+        Math.random() * height,
+        Math.random() * width,
+        Math.random() * height,
+      );
+      ctx.stroke();
+    }
+
+    // Grain
+    for (let i = 0; i < 160; i += 1) {
+      ctx.fillStyle =
+        Math.random() > 0.5
+          ? `rgba(255, 255, 255, ${Math.random() * 0.14})`
+          : `rgba(0, 0, 0, ${Math.random() * 0.28})`;
+      ctx.fillRect(Math.random() * width, Math.random() * height, Math.random() > 0.75 ? 2 : 1, 1);
+    }
+
+    // Border
+    ctx.strokeStyle = 'rgba(42, 49, 60, 0.95)';
+    ctx.lineWidth = 2;
+    ctx.strokeRect(1, 1, width - 2, height - 2);
+
+    return canvas.toDataURL('image/png');
+  }
+
+  private isValidEmail(email: string): boolean {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email.trim());
+  }
+
+  private validateContactForm(): string | null {
+    const name = this.contact.name.trim();
+    const email = this.contact.email.trim();
+    const subject = this.contact.subject.trim();
+    const message = this.contact.message.trim();
+    const captcha = this.contact.captchaAnswer.trim();
+
+    if (!name) {
+      return 'Name is required.';
+    }
+    if (!email) {
+      return 'Valid email is required.';
+    }
+    if (!this.isValidEmail(email)) {
+      return 'Please enter a valid email address.';
+    }
+    if (!subject) {
+      return 'Subject is required.';
+    }
+    if (!message) {
+      return 'Message is required.';
+    }
+    if (!captcha) {
+      return 'Please enter the captcha text.';
+    }
+    if (captcha.toUpperCase() !== this.captchaExpected) {
+      return 'Captcha is incorrect. Please try again.';
+    }
+    return null;
+  }
   sendMessage(event: Event): void {
     event.preventDefault();
-    const subject = encodeURIComponent(this.contact.subject || 'Hello from partha.info.bd');
+
+    const error = this.validateContactForm();
+    if (error) {
+      this.formError = error;
+      if (error.toLowerCase().includes('captcha')) {
+        this.refreshCaptcha();
+      }
+      return;
+    }
+
+    this.formError = '';
+    const subject = encodeURIComponent(this.contact.subject.trim());
     const body = encodeURIComponent(
-      `Name: ${this.contact.name}\nEmail: ${this.contact.email}\n\n${this.contact.message}`,
+      `Name: ${this.contact.name.trim()}\nEmail: ${this.contact.email.trim()}\n\n${this.contact.message.trim()}`,
     );
+    this.refreshCaptcha();
     window.location.href = `mailto:${this.email}?subject=${subject}&body=${body}`;
   }
 }

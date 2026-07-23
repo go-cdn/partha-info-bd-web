@@ -294,6 +294,163 @@
   border-color: var(--color-accent);
 }
 
+.form-select option {
+  background-color: #161a21;
+  color: #e8edf5;
+}
+
+.contact-icon {
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-icon i {
+  display: inline-block;
+  transform-origin: center;
+}
+
+.contact-icon-phone i {
+  animation: contact-phone-ring 2.4s ease-in-out infinite;
+}
+
+.contact-icon-office i {
+  animation: contact-office-float 3.2s ease-in-out infinite;
+}
+
+.contact-icon-email i {
+  animation: contact-email-bounce 2.8s ease-in-out infinite;
+}
+
+.contact-icon-facebook i {
+  animation: contact-facebook-pulse 2.6s ease-in-out infinite;
+}
+
+.contact-icon::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(circle at center, color-mix(in srgb, var(--color-accent) 28%, transparent), transparent 70%);
+  opacity: 0;
+  pointer-events: none;
+  animation: contact-glow 3s ease-in-out infinite;
+}
+
+.contact-icon-office::after {
+  animation-delay: 0.4s;
+}
+
+.contact-icon-email::after {
+  animation-delay: 0.8s;
+}
+
+.contact-icon-facebook::after {
+  animation-delay: 1.2s;
+}
+
+@keyframes contact-phone-ring {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  10% {
+    transform: rotate(14deg);
+  }
+  20% {
+    transform: rotate(-12deg);
+  }
+  30% {
+    transform: rotate(10deg);
+  }
+  40% {
+    transform: rotate(-6deg);
+  }
+  50%,
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes contact-office-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+@keyframes contact-email-bounce {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  40% {
+    transform: translateY(-3px) scale(1.06);
+  }
+  55% {
+    transform: translateY(1px) scale(0.98);
+  }
+}
+
+@keyframes contact-facebook-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.12);
+  }
+}
+
+@keyframes contact-glow {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.55;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-icon i,
+  .contact-icon::after {
+    animation: none !important;
+  }
+}
+
+.captcha-image {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  background: #0b0d10;
+}
+
+.captcha-group:focus-within {
+  border-color: var(--color-accent);
+}
+
+.captcha-input:focus {
+  outline: none;
+  border-color: transparent;
+}
+
+.captcha-refresh {
+  cursor: pointer;
+}
+
+.captcha-refresh:hover i {
+  animation: captcha-spin 0.6s linear;
+}
+
+@keyframes captcha-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .portrait-glow {
   box-shadow: 0 0 0 1px color-mix(in srgb, var(--color-accent) 35%, transparent),
     0 30px 80px rgba(0, 0, 0, 0.45);
@@ -575,5 +732,163 @@
   .sun,
   .solar-stars {
     animation: none !important;
+  }
+
+  .skill-shine-card:hover::after {
+    animation: none !important;
+  }
+}
+
+/* Skill card smooth shine (like {Angular}) */
+.skill-shine-card {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.skill-shine-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 45%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.12) 35%,
+    rgba(255, 255, 255, 0.55) 50%,
+    rgba(155, 224, 90, 0.35) 65%,
+    transparent 100%
+  );
+  mix-blend-mode: screen;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0;
+  transform: translateX(-120%);
+}
+
+.skill-shine-card:hover::after {
+  opacity: 1;
+  animation: skill-card-shine 1.35s ease-in-out infinite;
+}
+
+@keyframes skill-card-shine {
+  0% {
+    transform: translateX(-120%);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(280%);
+    opacity: 0;
+  }
+}
+
+@media (hover: none) {
+  .skill-shine-card:hover::after {
+    animation: none;
+    opacity: 0;
+  }
+}
+
+/* Section titles — animated 2px green outline */
+@property --outline-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.outline-title {
+  position: relative;
+  z-index: 0;
+  padding: 0.28em 0.55em;
+  border-radius: 0.55rem;
+  isolation: isolate;
+}
+
+.outline-title::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  padding: 2px;
+  background: conic-gradient(
+    from var(--outline-angle),
+    transparent 0%,
+    transparent 55%,
+    #62a92b 62%,
+    #9be05a 70%,
+    #d8ff8a 74%,
+    #62a92b 80%,
+    transparent 88%,
+    transparent 100%
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: outline-border-spin 2.2s linear infinite;
+}
+
+.outline-title::after {
+  content: '';
+  position: absolute;
+  inset: 2px;
+  z-index: -1;
+  border-radius: calc(0.55rem - 2px);
+  background: transparent;
+  pointer-events: none;
+}
+
+@keyframes outline-border-spin {
+  to {
+    --outline-angle: 360deg;
+  }
+}
+
+@supports not (background: conic-gradient(from var(--outline-angle), red, blue)) {
+  .outline-title {
+    border: 2px solid #62a92b;
+    animation: outline-border-pulse 1.8s ease-in-out infinite;
+  }
+
+  .outline-title::before,
+  .outline-title::after {
+    display: none;
+  }
+}
+
+@keyframes outline-border-pulse {
+  0%,
+  100% {
+    border-color: #62a92b;
+    box-shadow: 0 0 0 0 rgba(98, 169, 43, 0);
+  }
+  50% {
+    border-color: #9be05a;
+    box-shadow: 0 0 12px 0 rgba(98, 169, 43, 0.35);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .outline-title::before {
+    animation: none;
+    background: #62a92b;
+  }
+
+  .outline-title {
+    animation: none;
+    border: 2px solid #62a92b;
   }
 }

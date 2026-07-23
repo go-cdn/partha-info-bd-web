@@ -261,7 +261,9 @@
   <section id="education" class="border-t border-line px-4 py-14 sm:px-5 sm:py-20 md:px-8 md:py-28">
     <div class="mx-auto max-w-6xl min-w-0">
       <p class="text-sm font-medium text-accent">Education</p>
-      <h2 class="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl md:text-5xl">Academic background</h2>
+      <h2 class="outline-title mt-2 inline-block text-2xl font-semibold tracking-tight sm:text-3xl md:text-5xl">
+        Academic Background
+      </h2>
       <p class="mt-3 max-w-2xl text-sm text-ink-soft sm:mt-4 sm:text-base">
         Formal studies in Computer Science &amp; Engineering.
       </p>
@@ -290,8 +292,8 @@
   <section id="membership" class="border-t border-line bg-bg-soft px-4 py-14 sm:px-5 sm:py-20 md:px-8 md:py-28">
     <div class="mx-auto max-w-6xl min-w-0">
       <p class="text-sm font-medium text-accent">Membership</p>
-      <h2 class="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl md:text-5xl">
-        Professional societies
+      <h2 class="outline-title mt-2 inline-block text-2xl font-semibold tracking-tight sm:text-3xl md:text-5xl">
+        Professional Societies
       </h2>
       <p class="mt-3 max-w-2xl text-sm text-ink-soft sm:mt-4 sm:text-base">
         Active membership in professional computing communities.
@@ -321,7 +323,9 @@
   <section id="experience" class="px-4 py-14 sm:px-5 sm:py-20 md:px-8 md:py-28">
     <div class="mx-auto max-w-6xl min-w-0">
       <p class="text-sm font-medium text-accent">Experience</p>
-      <h2 class="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl md:text-5xl">My Skills</h2>
+      <h2 class="outline-title mt-2 inline-block text-2xl font-semibold tracking-tight sm:text-3xl md:text-5xl">
+        My Skills
+      </h2>
       <p
         #skillsIntro
         class="skills-type-line relative mt-3 max-w-2xl text-sm text-ink-soft sm:mt-4 sm:text-base"
@@ -351,15 +355,15 @@
             <ul class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
               @for (item of category.items; track item.label) {
                 <li
-                  class="skill-card flex min-w-0 items-center gap-3 rounded-2xl border border-line bg-panel px-3 py-3.5 sm:gap-4 sm:px-4 sm:py-4"
+                  class="skill-card skill-shine-card flex min-w-0 items-center gap-3 rounded-2xl border border-line bg-panel px-3 py-3.5 sm:gap-4 sm:px-4 sm:py-4"
                 >
                   <span
-                    class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-bg text-accent sm:h-11 sm:w-11"
+                    class="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-bg text-accent sm:h-11 sm:w-11"
                     aria-hidden="true"
                   >
                     <i [class]="item.icon"></i>
                   </span>
-                  <span class="min-w-0 text-sm font-medium break-words md:text-base">{{ item.label }}</span>
+                  <span class="relative z-10 min-w-0 text-sm font-medium break-words md:text-base">{{ item.label }}</span>
                 </li>
               }
             </ul>
@@ -373,7 +377,9 @@
   <section id="work" class="border-t border-line bg-bg-soft px-4 py-14 sm:px-5 sm:py-20 md:px-8 md:py-28">
     <div class="mx-auto max-w-6xl min-w-0">
       <p class="text-sm font-medium text-accent">Projects</p>
-      <h2 class="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl md:text-5xl">Selected work</h2>
+      <h2 class="outline-title mt-2 inline-block text-2xl font-semibold tracking-tight sm:text-3xl md:text-5xl">
+        Selected Work
+      </h2>
       <p class="mt-3 max-w-2xl text-sm text-ink-soft sm:mt-4 sm:text-base">
         Delivered ERP, industry software, CMS websites, APIs, and large-scale application work.
       </p>
@@ -414,49 +420,134 @@
 
   <!-- Contact -->
   <section id="contact" class="px-4 py-14 sm:px-5 sm:py-20 md:px-8 md:py-28">
-    <div class="mx-auto grid max-w-6xl min-w-0 gap-10 md:grid-cols-[1.1fr_0.9fr] md:gap-16">
-      <div class="min-w-0">
-        <p class="text-sm font-medium text-accent">Contact</p>
-        <h2 class="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl md:text-5xl">Let’s connect</h2>
-        <p class="mt-3 text-sm text-ink-soft sm:mt-4 sm:text-base">
-          I’m always excited to take on new projects and collaborate with innovative minds.
-        </p>
+    <div class="mx-auto max-w-6xl min-w-0">
+      <p class="text-sm font-medium text-accent">Contact</p>
+      <h2 class="outline-title mt-2 inline-block text-2xl font-semibold tracking-tight sm:text-3xl md:text-5xl">
+        Let’s Connect
+      </h2>
+      <p class="mt-3 max-w-2xl text-sm text-ink-soft sm:mt-4 sm:text-base">
+        I’m always excited to take on new projects and collaborate with innovative minds.
+      </p>
 
-        <form class="mt-6 space-y-4 sm:mt-8" (submit)="sendMessage($event)">
+      <div class="mt-6 grid min-w-0 gap-6 sm:mt-8 md:grid-cols-[1.1fr_0.9fr] md:items-start md:gap-10">
+        <form class="min-w-0 space-y-4" (submit)="sendMessage($event)" novalidate>
           <div class="grid gap-4 sm:grid-cols-2">
-            <input
-              class="form-field w-full min-w-0 rounded-xl border border-line bg-panel px-4 py-3.5 text-ink placeholder:text-muted"
-              type="text"
-              name="name"
-              placeholder="Name"
-              autocomplete="name"
-              [(ngModel)]="contact.name"
-              required
-            />
-            <input
-              class="form-field w-full min-w-0 rounded-xl border border-line bg-panel px-4 py-3.5 text-ink placeholder:text-muted"
-              type="email"
-              name="email"
-              placeholder="Email"
-              autocomplete="email"
-              [(ngModel)]="contact.email"
-              required
-            />
+            <div>
+              <label class="mb-1.5 block text-xs font-medium text-muted" for="contact-name">
+                Name <span class="text-accent">*</span>
+              </label>
+              <input
+                id="contact-name"
+                class="form-field w-full min-w-0 rounded-xl border border-line bg-panel px-4 py-3.5 text-ink placeholder:text-muted"
+                type="text"
+                name="name"
+                placeholder="Your name"
+                autocomplete="name"
+                [(ngModel)]="contact.name"
+                required
+              />
+            </div>
+            <div>
+              <label class="mb-1.5 block text-xs font-medium text-muted" for="contact-email">
+                Valid Email <span class="text-accent">*</span>
+              </label>
+              <input
+                id="contact-email"
+                class="form-field w-full min-w-0 rounded-xl border border-line bg-panel px-4 py-3.5 text-ink placeholder:text-muted"
+                type="email"
+                name="email"
+                placeholder="you@example.com"
+                autocomplete="email"
+                [(ngModel)]="contact.email"
+                required
+              />
+            </div>
           </div>
-          <input
-            class="form-field w-full min-w-0 rounded-xl border border-line bg-panel px-4 py-3.5 text-ink placeholder:text-muted"
-            type="text"
-            name="subject"
-            placeholder="Subject"
-            [(ngModel)]="contact.subject"
-          />
-          <textarea
-            class="form-field min-h-32 w-full min-w-0 rounded-xl border border-line bg-panel px-4 py-3.5 text-ink placeholder:text-muted"
-            name="message"
-            placeholder="Message"
-            [(ngModel)]="contact.message"
-            required
-          ></textarea>
+
+          <div>
+            <label class="mb-1.5 block text-xs font-medium text-muted" for="contact-subject">
+              Subject <span class="text-accent">*</span>
+            </label>
+            <div class="relative">
+              <select
+                id="contact-subject"
+                class="form-field form-select w-full min-w-0 appearance-none rounded-xl border border-line bg-panel px-4 py-3.5 pr-10 text-ink"
+                name="subject"
+                [(ngModel)]="contact.subject"
+                required
+              >
+                <option value="" disabled>Select a subject</option>
+                @for (item of contactSubjects; track item) {
+                  <option [value]="item">{{ item }}</option>
+                }
+              </select>
+              <i
+                class="fa-solid fa-chevron-down pointer-events-none absolute top-1/2 right-4 -translate-y-1/2 text-xs text-muted"
+                aria-hidden="true"
+              ></i>
+            </div>
+          </div>
+
+          <div>
+            <label class="mb-1.5 block text-xs font-medium text-muted" for="contact-message">
+              Message <span class="text-accent">*</span>
+            </label>
+            <textarea
+              id="contact-message"
+              class="form-field min-h-32 w-full min-w-0 rounded-xl border border-line bg-panel px-4 py-3.5 text-ink placeholder:text-muted"
+              name="message"
+              placeholder="Message"
+              [(ngModel)]="contact.message"
+              required
+            ></textarea>
+          </div>
+
+          <div>
+            <label class="mb-1.5 block text-xs font-medium text-muted" for="contact-captcha">
+              Captcha <span class="text-accent">*</span>
+            </label>
+            <div class="captcha-group flex w-full max-w-md flex-col overflow-hidden rounded-xl border border-line bg-panel sm:flex-row sm:items-stretch">
+              <div class="captcha-box relative shrink-0 overflow-hidden border-b border-line sm:border-r sm:border-b-0">
+                <img
+                  class="captcha-image block h-14 w-full object-cover select-none sm:w-[180px]"
+                  [src]="captchaImageUrl"
+                  width="180"
+                  height="56"
+                  alt="Captcha image"
+                  draggable="false"
+                  (contextmenu)="blockImageAction($event)"
+                  (dragstart)="blockImageAction($event)"
+                />
+                <button
+                  type="button"
+                  class="captcha-refresh absolute top-1 right-1 inline-flex h-5 w-5 items-center justify-center text-accent transition hover:text-accent-soft"
+                  (click)="refreshCaptcha()"
+                  aria-label="Refresh captcha"
+                  title="Refresh captcha"
+                >
+                  <i class="fa-solid fa-arrows-rotate text-[0.55rem]" aria-hidden="true"></i>
+                </button>
+              </div>
+              <input
+                id="contact-captcha"
+                class="form-field captcha-input min-w-0 flex-1 border-0 bg-transparent px-4 py-3.5 text-ink placeholder:text-muted"
+                type="text"
+                name="captcha"
+                placeholder="Enter captcha"
+                [(ngModel)]="contact.captchaAnswer"
+                required
+                autocomplete="off"
+                autocapitalize="characters"
+                spellcheck="false"
+              />
+            </div>
+            <p class="mt-2 text-xs text-muted">Type the characters shown in the image.</p>
+          </div>
+
+          @if (formError) {
+            <p class="text-sm text-[#F25022]" role="alert">{{ formError }}</p>
+          }
+
           <button
             type="submit"
             class="cta-primary inline-flex w-full items-center justify-center gap-2 rounded-full bg-accent px-6 py-3.5 text-sm font-semibold text-bg sm:w-auto"
@@ -465,71 +556,74 @@
             Send Message
           </button>
         </form>
+
+        <aside class="min-w-0">
+          <p class="mb-1.5 text-xs font-medium text-transparent select-none" aria-hidden="true">.</p>
+          <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <a
+              [href]="'tel:' + phoneTel"
+              class="skill-card flex min-h-[3.25rem] items-center gap-3 rounded-xl border border-line bg-panel px-4 py-3.5"
+            >
+              <span
+                class="contact-icon contact-icon-phone flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-bg text-accent"
+              >
+                <i class="fa-solid fa-phone text-base" aria-hidden="true"></i>
+              </span>
+              <div class="min-w-0">
+                <p class="text-xs text-muted">Telephone</p>
+                <p class="mt-0.5 text-sm font-medium break-words">{{ phoneTelDisplay }}</p>
+              </div>
+            </a>
+
+            <a
+              [href]="'tel:' + phoneOffice"
+              class="skill-card flex min-h-[3.25rem] items-center gap-3 rounded-xl border border-line bg-panel px-4 py-3.5"
+            >
+              <span
+                class="contact-icon contact-icon-office flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-bg text-accent"
+              >
+                <i class="fa-solid fa-building text-base" aria-hidden="true"></i>
+              </span>
+              <div class="min-w-0">
+                <p class="text-xs text-muted">Office</p>
+                <p class="mt-0.5 text-sm font-medium break-words">{{ phoneOfficeDisplay }}</p>
+              </div>
+            </a>
+
+            <a
+              [href]="'mailto:' + email"
+              class="skill-card flex min-h-[3.25rem] items-center gap-3 rounded-xl border border-line bg-panel px-4 py-3.5"
+            >
+              <span
+                class="contact-icon contact-icon-email flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-bg text-accent"
+              >
+                <i class="fa-solid fa-envelope text-base" aria-hidden="true"></i>
+              </span>
+              <div class="min-w-0">
+                <p class="text-xs text-muted">Email</p>
+                <p class="mt-0.5 text-sm font-medium break-all">{{ email }}</p>
+              </div>
+            </a>
+
+            <a
+              [href]="facebookUrl"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="skill-card flex min-h-[3.25rem] items-center gap-3 rounded-xl border border-line bg-panel px-4 py-3.5"
+            >
+              <span
+                class="contact-icon contact-icon-facebook flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-bg text-accent"
+              >
+                <i class="fa-brands fa-facebook-f text-base" aria-hidden="true"></i>
+              </span>
+              <div class="min-w-0">
+                <p class="text-xs text-muted">Facebook</p>
+                <p class="mt-0.5 text-sm font-medium break-words">partho.torofder</p>
+              </div>
+            </a>
+          </div>
+        </aside>
       </div>
-
-      <aside class="min-w-0 space-y-3 sm:space-y-4">
-        <a
-          [href]="'tel:' + phoneTel"
-          class="skill-card flex items-start gap-3 rounded-2xl border border-line bg-panel p-4 sm:gap-4 sm:p-5"
-        >
-          <span
-            class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-bg text-accent"
-          >
-            <i class="fa-solid fa-phone" aria-hidden="true"></i>
-          </span>
-          <div class="min-w-0">
-            <p class="text-xs text-muted">Tel</p>
-            <p class="mt-1 text-sm font-medium break-words">{{ phoneTelDisplay }}</p>
-          </div>
-        </a>
-
-        <a
-          [href]="'tel:' + phoneOffice"
-          class="skill-card flex items-start gap-3 rounded-2xl border border-line bg-panel p-4 sm:gap-4 sm:p-5"
-        >
-          <span
-            class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-bg text-accent"
-          >
-            <i class="fa-solid fa-building" aria-hidden="true"></i>
-          </span>
-          <div class="min-w-0">
-            <p class="text-xs text-muted">Office</p>
-            <p class="mt-1 text-sm font-medium break-words">{{ phoneOfficeDisplay }}</p>
-          </div>
-        </a>
-
-        <a
-          [href]="'mailto:' + email"
-          class="skill-card flex items-start gap-3 rounded-2xl border border-line bg-panel p-4 sm:gap-4 sm:p-5"
-        >
-          <span
-            class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-bg text-accent"
-          >
-            <i class="fa-solid fa-envelope" aria-hidden="true"></i>
-          </span>
-          <div class="min-w-0">
-            <p class="text-xs text-muted">Email</p>
-            <p class="mt-1 text-sm font-medium break-all">{{ email }}</p>
-          </div>
-        </a>
-
-        <a
-          [href]="facebookUrl"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="skill-card flex items-start gap-3 rounded-2xl border border-line bg-panel p-4 sm:gap-4 sm:p-5"
-        >
-          <span
-            class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-bg text-accent"
-          >
-            <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>
-          </span>
-          <div class="min-w-0">
-            <p class="text-xs text-muted">Facebook</p>
-            <p class="mt-1 text-sm font-medium break-words">partho.torofder</p>
-          </div>
-        </a>
-      </aside>
     </div>
   </section>
 
@@ -541,7 +635,7 @@
       <div class="flex flex-wrap items-center gap-4">
         <a [href]="'mailto:' + email" class="nav-link">Email</a>
         <a [href]="facebookUrl" target="_blank" rel="noopener noreferrer" class="nav-link">Facebook</a>
-        <a [href]="'tel:' + phoneTel" class="nav-link">Tel</a>
+        <a [href]="'tel:' + phoneTel" class="nav-link">Telephone</a>
       </div>
     </div>
   </footer>
